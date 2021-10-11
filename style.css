@@ -1,0 +1,205 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+
+    /* Pick a decent default font */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+#header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 15px;
+}
+
+#settings {
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: black;
+    padding: 0;
+    transition: 0.1s color;
+}
+
+#settings:hover {
+    color: gray;
+}
+
+#settings-pane {
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    background-color: #e9e9e9;
+    width: 300px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 1.25em;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.1s opacity;
+}
+
+#settings-pane.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.settings-option {
+    position: relative;
+}
+
+.settings-option:not(:last-child) {
+    margin-bottom: 15px;
+}
+
+.settings-option select {
+    background: none;
+    border: none;
+    font-family: inherit;
+    width: 90px;
+    font-size: inherit;
+    position: absolute;
+    top: -3px;
+    right: 0;
+    transition: 0.1s color;
+}
+
+.settings-option select:hover {
+    color: gray;
+}
+
+.settings-option option {
+    background-color: #f9f9f9;
+    color: black;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 15px;
+}
+
+#main {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    transform: translateY(-50%);
+}
+
+#number {
+    font-weight: light;
+    font-family: "Oswald";
+    font-size: 6em;
+    margin-bottom: 15px;
+}
+
+.threecomma, .fourcomma {
+    display: none;
+}
+
+.show-threecommas .threecomma {
+    display: inline;
+}
+
+.show-fourcommas .fourcomma {
+    display: inline;
+}
+
+#input {
+    display: block;
+    margin: 25px 0 -10px 50%;
+    box-sizing: border-box;
+    height: 40px;
+    transform: translate(-50%, -3px);
+    font-size: 1.25em;
+}
+
+/* For some dumbass reason Firefox doesn't show the placeholder caret at the right position */
+@-moz-document url-prefix() {
+    #input:empty {
+        width: 400px;
+        padding-left: 200px;
+    }
+
+    #input:empty::before {
+        margin-left: -200px;
+    }
+}
+
+#input:empty::before {
+    content: "Enter your answer here...";
+    color: gray;
+}
+
+#input:focus {
+    outline: none;
+}
+
+#explanation {
+    width: 450px;
+    margin: 10px 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    padding-left: 40px;
+    box-sizing: border-box;
+    text-align: left;
+    white-space: pre-wrap;
+}
+
+#explanation:empty {
+    display: none;
+}
+
+#explanation.correct {
+    background-color: #e7f3e7;
+    border-left: 5px solid #52a256;
+    color: #376c39;
+}
+
+#explanation.correct::before {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: " ";
+}
+
+#explanation.wrong {
+    background-color: #fce8e8;
+    border-left: 5px solid #e84f4f;
+    color: #b91818;
+}
+
+#explanation.wrong::before {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: " ";
+}
+
+#explanation p:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+#next {
+    background: none;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 5px;
+    margin: 5px;
+    font-size: 1.25em;
+    background: #e9e9e9;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f0733eaba3.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <header id="header">
+        <button id="settings"><i class="fas fa-cog"></i></button>
+    </header>
+
+    <div id="settings-pane">
+        <div class="settings-option">
+            <label for="unit">Max Unit</label>
+
+            <select name="unit" id="unit-select">
+                <option value="9999">천</option>
+                <option value="99999999" selected>천만</option>
+                <option value="999999999999">천억</option>
+                <option value="9999999999999999">천조</option>
+            </select>
+        </div>
+        <div class="settings-option">
+            <label for="commas">Show Commas</label>
+
+            <select name="commas" id="commas-select">
+                <option value="three">3 digits</option>
+                <option value="four" selected>4 digits</option>
+                <option value="none">None</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="main">
+        <div id="number" class="show-fourcommas"></div>
+        <div id="input" contenteditable></div>
+        <div id="explanation" class="correct"></div>
+        <button id="next">Next</button>
+    </div>
+
+    <footer id="footer">
+        <p>Made with <i class="fas fa-heart"></i> by lunabunn</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
