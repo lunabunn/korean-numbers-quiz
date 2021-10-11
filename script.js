@@ -8,10 +8,12 @@ const explanation = document.getElementById("explanation");
 const next = document.getElementById("next");
 
 let maxValue = 99999999;
+updateNumber();
 let value;
 randomizeValue();
 updateNumber();
 let explaining = false;
+updateShowCommas();
 
 settings.addEventListener("click", e => {
     settingsPane.classList.toggle("show");
@@ -26,22 +28,9 @@ settingsPane.addEventListener("click", e => {
     e.stopPropagation();
 });
 
-maxUnit.addEventListener("change", () => {
-    maxValue = parseInt(maxUnit.value);
-});
+maxUnit.addEventListener("change", updateMaxValue);
 
-showCommas.addEventListener("change", () => {
-    if (showCommas.value === "three") {
-        number.classList.remove("show-fourcommas");
-        number.classList.add("show-threecommas");
-    } else if (showCommas.value === "four") {
-        number.classList.add("show-fourcommas");
-        number.classList.remove("show-threecommas");
-    } else {
-        number.classList.remove("show-fourcommas");
-        number.classList.remove("show-threecommas");
-    }
-});
+showCommas.addEventListener("change", updateShowCommas);
 
 input.addEventListener("input", () => {
     if (input.innerText === "\n") {
@@ -136,4 +125,21 @@ function getWrongMessage() {
 /// Returns the given string wrapped in a <p> tag
 function p(s) {
     return "<p>" + s + "</p>";
+}
+
+function updateMaxValue() {
+    maxValue = parseInt(maxUnit.value);
+}
+
+function updateShowCommas() {
+    if (showCommas.value === "three") {
+        number.classList.remove("show-fourcommas");
+        number.classList.add("show-threecommas");
+    } else if (showCommas.value === "four") {
+        number.classList.add("show-fourcommas");
+        number.classList.remove("show-threecommas");
+    } else {
+        number.classList.remove("show-fourcommas");
+        number.classList.remove("show-threecommas");
+    }
 }
