@@ -8,7 +8,7 @@ const explanation = document.getElementById("explanation");
 const next = document.getElementById("next");
 
 let maxValue = 99999999;
-updateNumber();
+updateMaxValue();
 let value;
 randomizeValue();
 updateNumber();
