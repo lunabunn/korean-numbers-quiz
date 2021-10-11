@@ -101,7 +101,7 @@ function updateNumber() {
 
 /// Converts a number to a Korean number string
 function toKrNumber(x) {
-    const bigUnits = ["", "만", "억"];
+    const bigUnits = ["", "만", "억", "조"];
     const smallUnits = ["", "십", "백", "천"];
     const digits = ["", "일", "이", "삼", "사", "오", "육", "칠", "팔", "구"];
 
