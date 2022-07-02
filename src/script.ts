@@ -23,15 +23,26 @@ function formatKrNumber(num: string, omitOne: boolean = true): string {
 
     const length = decimalPos ?? num.length;
     const numChunks = Math.ceil(length / 4);
-    for (let i = numChunks - 1, o = 0; i >= 0; i--, o += 4) {
+    for (let i = 0, o = length - 4; i < numChunks; i++, o -= 4) {
+        if (i > 0) s = " " + s;
+        s = largeUnits[i] + s;
         for (let j = 0; j < 4; j++) {
-            const digit = parseInt(num[o + j]);
-            if (digit > 0) {
-                s = s + ((digit === 1 && omitOne) ? "" : digits[digit]) + smallUnits[3 - j];
+            let c = num.charCodeAt(o + 3 - j) - 0x30;
+            if (!(c > 0)) continue;
+            s = smallUnits[j] + s;
+            if (!omitOne || c !== 1 || (i !== 1 && j === 0)) {
+                s = digits[c] + s;
             }
         }
-        s = s + largeUnits[i] + " ";
     }
 
-    return s.trimEnd();
+    if (decimalPos < num.length - 1) {
+        s += " 점 ";
+        for (let i = decimalPos + 1; i < num.length; i++) {
+            const digit = num.charCodeAt(i) - 0x30;
+            s += digits[digit];
+        }
+    }
+
+    return s;
 }
