@@ -24,16 +24,21 @@ function formatKrNumber(num: string, omitOne: boolean = true): string {
     const length = decimalPos ?? num.length;
     const numChunks = Math.ceil(length / 4);
     for (let i = 0, o = length - 4; i < numChunks; i++, o -= 4) {
-        if (i > 0) s = " " + s;
-        s = largeUnits[i] + s;
-        for (let j = 0; j < 4; j++) {
+        let sum = 0;
+        let chunk = "";
+        for (let j = 3; j >= 0; j--) {
             let c = num.charCodeAt(o + 3 - j) - 0x30;
             if (!(c > 0)) continue;
-            s = smallUnits[j] + s;
-            if (!omitOne || c !== 1 || (i !== 1 && j === 0)) {
-                s = digits[c] + s;
+            if (!omitOne || c !== 1 || ((sum !== 0 || i !== 1) && j === 0)) {
+                chunk += digits[c];
             }
+            chunk += smallUnits[j];
+            sum += c;
         }
+        chunk += largeUnits[i];
+        if (sum === 0) continue;
+        if (i > 0) s = " " + s;
+        s = chunk + s;
     }
 
     if (decimalPos < num.length - 1) {
